@@ -1,0 +1,6 @@
+{
+  "name": "TAT Media & Event",
+  "description": "Website giới thiệu hệ sinh thái truyền thông và tổ chức sự kiện đẳng cấp TAT Media & Event. Giao thoa giữa Chiến lược, Sáng tạo và Công nghệ.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

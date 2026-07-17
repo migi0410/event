@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Cormorant Garamond", serif;
+
+  /* Custom palette as specified in the Architectural Precision style guide */
+  --color-primary: #081223;
+  --color-primary-light: #16243d;
+  --color-secondary: #3755c3;
+  --color-secondary-light: #4c6ee3;
+  --color-surface-dark: #0a162b;
+  --color-surface-light: #fdf8f8;
+  --color-neutral-gray: #7e7576;
+}
+
+@layer utilities {
+  /* Dynamic structural clipping paths for architectural angles */
+  .tri-mask {
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  }
+
+  .tri-mask-rev {
+    clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
+  }
+
+  /* Glassmorphism reflecting expensive executive interior surfaces */
+  .glass-nav {
+    background: rgba(8, 18, 35, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* Structural blueprint rules */
+  .asymmetric-rule {
+    height: 1px;
+    background: linear-gradient(90deg, #3755c3 0%, rgba(55, 85, 195, 0) 100%);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 24px rgba(55, 85, 195, 0.5);
+  }
+
+  /* Vertical branding text */
+  .vertical-text {
+    writing-mode: vertical-lr;
+  }
+
+  .core-value-img-container {
+    width: 100%;
+    height: 220px;
+  }
+  @media (min-width: 768px) {
+    .core-value-img-container {
+      height: 260px;
+    }
+  }
+
+  .transition-premium {
+    transition-property: all;
+    transition-duration: 700ms;
+    transition-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
+  }
+}
+
+/* Base resets & styles matching C-suite mood */
+body {
+  background-color: #081223;
+  color: #ffffff;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  opacity: 0.012;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Custom scrollbar for premium desktop experience */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #081223;
+}
+::-webkit-scrollbar-thumb {
+  background: #3755c3;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4c6ee3;
+}
