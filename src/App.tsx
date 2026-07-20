@@ -535,7 +535,7 @@ export default function App() {
                   </div>
                   <div>
                     <h5 className="font-display font-bold text-xs tracking-wider text-white uppercase">Văn phòng chính</h5>
-                    <p className="text-sm text-white/60 font-sans mt-1">Tầng 25, Keangnam Landmark 72, Hà Nội, Việt Nam</p>
+                    <p className="text-sm text-white/60 font-sans mt-1">14 Đường D33, Phường Phước Long B, TP. Thủ Đức, TP.HCM</p>
                   </div>
                 </div>
 
@@ -550,16 +550,18 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Embedded static styled map location image */}
+              {/* Embedded interactive Google Map */}
               <div className="relative h-[240px] w-full border border-white/10 overflow-hidden">
-                <div 
-                  className="w-full h-full bg-cover bg-center brightness-[0.7] contrast-[1.1] grayscale-[30%] hover:scale-105 transition-transform duration-1000"
-                  style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuBSXG491MqV6yyccQYfaJ9HR2l_u72v9ZiFe1LMArDHIhF5qw2kwrVSjsP8C939hpp_ezOWgnnZ5Z9IREzlbFFH1bGHcnFVaSASpjgKThDsYNjneEo47gVY45qesyp9_ObI-bdg3LExMX9GUnRgMh2whwz7aHtok6ogEugn4lynpMConyUfDdomEjFthd8b7O59PTXoAfP8BTXfrAchuIwTcbZy6Q_567ijW_2V5V2CQ29ntdm-jOzDyw')" }}
-                  title="Hanoi Map HQ"
+                <iframe 
+                  className="w-full h-full border-0 filter invert-[0.9] hue-rotate-[200deg] brightness-[0.8] contrast-[1.2]"
+                  src="https://maps.google.com/maps?q=14%20%C4%90%C6%B0%E1%BB%9Dng%20D33%2C%20Ph%C6%B0%E1%BB%9Bc%20Long%20B%2C%20Th%E1%BB%A7%20%C4%90%E1%BB%A9c%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                  allowFullScreen={true}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="TAT Media & Event Location Map"
                 />
-                <div className="absolute inset-0 bg-secondary/10 pointer-events-none" />
-                <div className="absolute bottom-4 right-4 bg-[#0a162b] border border-white/10 px-3 py-1 text-[9px] font-display font-bold tracking-widest text-white/80 uppercase">
-                  TAT HQ LANDMARK 72
+                <div className="absolute bottom-4 right-4 bg-[#0a162b] border border-white/10 px-3 py-1 text-[9px] font-display font-bold tracking-widest text-white/80 uppercase pointer-events-none">
+                  TAT MEDIA & EVENT HQ
                 </div>
               </div>
             </div>
