@@ -193,7 +193,18 @@ export default function App() {
         <div className="relative z-10 px-6 md:px-20 w-full max-w-7xl mx-auto space-y-10">
           <div className="asymmetric-rule w-40" />
           <h1 className="font-display font-bold text-4xl sm:text-6xl lg:text-[64px] leading-[1.2] max-w-5xl tracking-tight text-white">
-            Uy tín trong cam kết.<br />Chủ động trong hành động.<br />Khác biệt trong <span className="inline-block pl-[0.15em] -ml-[0.15em] pr-[0.1em] -mr-[0.1em] text-gradient-hero font-semibold italic drop-shadow-[0_2px_10px_rgba(126,160,255,0.35)]">giá trị mang lại</span>.
+            Uy tín trong cam kết.<br />Chủ động trong hành động.<br />Khác biệt trong <span 
+              className="inline-block pl-[0.15em] -ml-[0.15em] pr-[0.1em] -mr-[0.1em] font-semibold italic drop-shadow-[0_2px_10px_rgba(126,160,255,0.35)]"
+              style={{
+                background: 'linear-gradient(135deg, #b3c5ff 0%, #7ea0ff 50%, #4c6ee3 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                color: 'transparent'
+              }}
+            >
+              giá trị mang lại
+            </span>.
           </h1>
           <p className="text-white/70 max-w-2xl text-base md:text-lg font-sans leading-relaxed">
             Đơn vị tổ chức sự kiện và truyền thông doanh nghiệp toàn diện trên phạm vi toàn quốc.
