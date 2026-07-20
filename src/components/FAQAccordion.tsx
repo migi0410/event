@@ -98,7 +98,7 @@ export default function FAQAccordion() {
 
               {[
                 { normal: 'Chỉ tổ chức sự kiện', tat: 'Tổ chức + Truyền thông + Kết nối doanh nghiệp' },
-                { normal: 'Không có data doanh nghiệp', tat: 'Có hệ sinh thái khách hàng TAVITAX' },
+                { normal: 'Không có data doanh nghiệp', tat: 'Có hệ sinh thái khách hàng' },
                 { normal: 'Không hỗ trợ tài trợ', tat: 'Có dịch vụ kêu gọi tài trợ chuyên nghiệp' },
                 { normal: 'Không có PR báo chí', tat: 'Có dịch vụ PR báo chí đầy đủ' },
                 { normal: 'Không có kết nối kinh doanh', tat: 'Có cộng đồng doanh nghiệp hỗ trợ' }

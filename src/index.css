@@ -105,3 +105,16 @@ body::before {
 ::-webkit-scrollbar-thumb:hover {
   background: #4c6ee3;
 }
+
+.text-gradient-hero {
+  background: linear-gradient(135deg, #b3c5ff 0%, #7ea0ff 50%, #4c6ee3 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: transparent !important;
+  display: inline-block !important;
+  padding-left: 0.15em !important;
+  margin-left: -0.15em !important;
+  padding-right: 0.1em !important;
+  margin-right: -0.1em !important;
+}

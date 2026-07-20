@@ -33,7 +33,7 @@ export const CORE_SERVICES: ServiceItem[] = [
     id: 'service-3',
     categoryCode: 'BUSINESS CONNECT',
     title: 'Kết nối doanh nghiệp (Connection)',
-    shortDesc: 'Kích hoạt gói tài trợ sự kiện, mở rộng liên kết giao thương và gia nhập cộng đồng đối tác lớn TAVITAX.',
+    shortDesc: 'Kích hoạt gói tài trợ sự kiện, mở rộng liên kết giao thương và gia nhập cộng đồng đối tác lớn.',
     detailedDesc: 'Đóng vai trò cầu nối xúc tiến thương mại đắc lực cho các doanh nghiệp SME, ngân hàng, hiệp hội kinh tế, giúp kêu gọi tài trợ hiệu quả và mở rộng tệp khách hàng tiềm năng bền vững.',
     image: '/assets/generated/core_service_connection.png',
     features: [
@@ -119,7 +119,7 @@ export const ECOSYSTEM_BENEFITS: EcosystemBenefit[] = [
   {
     id: 'benefit-3',
     title: 'Kết nối doanh nghiệp (Connection)',
-    description: 'Xây dựng hệ sinh thái kết nối doanh nghiệp, đối tác và khách hàng, tạo ra giá trị cộng đồng bền vững từ dữ liệu TAVITAX.'
+    description: 'Xây dựng hệ sinh thái kết nối doanh nghiệp, đối tác và khách hàng, tạo ra giá trị cộng đồng bền vững từ dữ liệu khách hàng.'
   }
 ];
 

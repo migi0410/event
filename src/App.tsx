@@ -193,7 +193,7 @@ export default function App() {
         <div className="relative z-10 px-6 md:px-20 w-full max-w-7xl mx-auto space-y-10">
           <div className="asymmetric-rule w-40" />
           <h1 className="font-display font-bold text-4xl sm:text-6xl lg:text-[64px] leading-[1.2] max-w-5xl tracking-tight text-white">
-            Uy tín trong cam kết.<br />Chủ động trong hành động.<br />Khác biệt trong <span className="text-secondary text-glow font-normal italic">giá trị mang lại</span>.
+            Uy tín trong cam kết.<br />Chủ động trong hành động.<br />Khác biệt trong <span className="inline-block pl-[0.15em] -ml-[0.15em] pr-[0.1em] -mr-[0.1em] text-gradient-hero font-semibold italic drop-shadow-[0_2px_10px_rgba(126,160,255,0.35)]">giá trị mang lại</span>.
           </h1>
           <p className="text-white/70 max-w-2xl text-base md:text-lg font-sans leading-relaxed">
             Đơn vị tổ chức sự kiện và truyền thông doanh nghiệp toàn diện trên phạm vi toàn quốc.
@@ -332,7 +332,7 @@ export default function App() {
               Giá trị cốt lõi
             </h2>
             <p className="font-display font-bold text-[10px] tracking-[0.50em] text-white/40 uppercase italic mt-4">
-              TRUST • ACTION • TRANSFORM
+              TRUST • AUTHENTIC • TRANSFORM
             </p>
           </div>
 
@@ -360,24 +360,24 @@ export default function App() {
               </div>
             </div>
 
-            {/* Action value card */}
+            {/* Authentic value card */}
             <div className="group space-y-6 md:mt-12 lg:mt-16">
               <div className="bg-white/[0.02] p-1.5 border border-white/10 rounded-3xl transition-premium">
                 <div className="core-value-img-container overflow-hidden rounded-[calc(1.5rem-0.375rem)] relative bg-[#081223]">
                   <img 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[800ms] select-none" 
                     src="/assets/generated/core_value_action.png" 
-                    alt="TAT Action core value"
+                    alt="TAT Authentic core value"
                   />
                   <div className="absolute inset-0 bg-[#081223]/40 group-hover:bg-[#081223]/10 transition-colors duration-500" />
                 </div>
               </div>
               <div className="space-y-3">
                 <h3 className="font-display font-bold text-xl md:text-2xl text-secondary text-glow uppercase tracking-wide">
-                  A — Action
+                  A — Authentic
                 </h3>
                 <p className="text-sm text-white/60 leading-relaxed font-sans pl-1">
-                  Luôn chủ động trong giải quyết công việc và xử lý mọi tình huống phát sinh.
+                  Chân thực trong cam kết, trung thực trong hành động. Kiến tạo các giá trị độc bản và giữ vững bản sắc cốt lõi của thương hiệu.
                 </p>
               </div>
             </div>
