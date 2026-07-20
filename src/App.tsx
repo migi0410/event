@@ -535,7 +535,7 @@ export default function App() {
                   </div>
                   <div>
                     <h5 className="font-display font-bold text-xs tracking-wider text-white uppercase">Văn phòng chính</h5>
-                    <p className="text-sm text-white/60 font-sans mt-1">14 Đường D33, Phường Phước Long B, TP. Thủ Đức, TP.HCM</p>
+                    <p className="text-sm text-white/60 font-sans mt-1">14 đường D33, phường Phước Long, TP.HCM</p>
                   </div>
                 </div>
 
@@ -554,7 +554,7 @@ export default function App() {
               <div className="relative h-[240px] w-full border border-white/10 overflow-hidden">
                 <iframe 
                   className="w-full h-full border-0 filter invert-[0.9] hue-rotate-[200deg] brightness-[0.8] contrast-[1.2]"
-                  src="https://maps.google.com/maps?q=14%20%C4%90%C6%B0%E1%BB%9Dng%20D33%2C%20Ph%C6%B0%E1%BB%9Bc%20Long%20B%2C%20Th%E1%BB%A7%20%C4%90%E1%BB%A9c%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                  src="https://maps.google.com/maps?q=14%20%C4%91%C6%B0%E1%BB%9Dng%20D33%2C%20ph%C6%B0%E1%BB%9Bc%20long%2C%20TP.HCM&t=&z=16&ie=UTF8&iwloc=&output=embed"
                   allowFullScreen={true}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
