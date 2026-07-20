@@ -6,12 +6,10 @@ import { PROJECTS, INITIAL_INQUIRIES } from './data';
 import Header from './components/Header';
 import ProjectModal from './components/ProjectModal';
 import ServiceShowcase from './components/ServiceShowcase';
-import AdminPanel from './components/AdminPanel';
 import FAQAccordion from './components/FAQAccordion';
 import StatsCounter from './components/StatsCounter';
 import { 
   Briefcase, 
-  Settings, 
   HelpCircle, 
   Mail, 
   Phone, 
@@ -39,9 +37,6 @@ export default function App() {
   // Project detail modal state
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   
-  // Admin Lead Management panel toggle
-  const [isAdminOpen, setIsAdminOpen] = useState(false);
-  const [adminClickCount, setAdminClickCount] = useState(0);
 
   // Form Fields State
   const [fullName, setFullName] = useState('');
@@ -146,15 +141,6 @@ export default function App() {
     }, 6000);
   };
 
-  // Easter egg: Click on the footer copyright notice 5 times to launch Admin Panel
-  const handleAdminClick = () => {
-    const nextCount = adminClickCount + 1;
-    setAdminClickCount(nextCount);
-    if (nextCount >= 5) {
-      setIsAdminOpen(true);
-      setAdminClickCount(0);
-    }
-  };
 
   const filteredProjects = projectFilter === 'all' 
     ? PROJECTS 
@@ -682,11 +668,7 @@ export default function App() {
             src="/assets/logo-footer-light.png"
           />
           <div className="text-xs text-white/50 leading-relaxed font-sans max-w-sm">
-            <span 
-              onClick={handleAdminClick}
-              className="cursor-pointer select-none font-medium hover:text-secondary transition-colors"
-              title="Nhấp 5 lần để mở bảng Admin"
-            >
+            <span className="select-none font-medium">
               © 2026 TAT Media & Event.
             </span>{' '}
             Branding Heritage & Global Vision. 
@@ -727,14 +709,6 @@ export default function App() {
                 YT
               </a>
             </div>
-            {/* Quick launch Admin panel explicitly if needed */}
-            <button 
-              onClick={() => setIsAdminOpen(true)}
-              className="mt-6 flex items-center gap-2 text-white/30 hover:text-secondary text-[10px] uppercase font-display font-bold tracking-widest transition-colors bg-transparent border-0 cursor-pointer p-0"
-            >
-              <Settings className="w-3.5 h-3.5" />
-              <span>Admin Lead Manager</span>
-            </button>
           </div>
         </div>
       </footer>
@@ -745,11 +719,6 @@ export default function App() {
         onClose={() => setSelectedProject(null)} 
       />
 
-      {/* Admin Leads Management panel */}
-      <AdminPanel 
-        isOpen={isAdminOpen} 
-        onClose={() => setIsAdminOpen(false)} 
-      />
     </div>
   );
 }
