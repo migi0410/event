@@ -20,7 +20,7 @@ export const CORE_SERVICES: ServiceItem[] = [
     categoryCode: 'CREATIVE MEDIA',
     title: 'Truyền thông đa phương tiện (Media)',
     shortDesc: 'Sản xuất TVC doanh nghiệp, Livestream sự kiện, chụp ảnh quay phim chuyên nghiệp và chiến lược PR báo chí.',
-    detailedDesc: 'Cung cấp giải pháp phủ sóng thương hiệu tối đa thông qua hệ thống dịch vụ media khép kín: từ quay phim, chụp ảnh sự kiện đến sản xuất TVC, thiết kế đồ họa giới thiệu sản phẩm và quản trị fanpage chuyên nghiệp.',
+    detailedDesc: 'Cung cấp giải pháp phủ sóng thương hiệu thông qua hệ thống dịch vụ media khép kín: từ quay phim, chụp ảnh sự kiện đến sản xuất TVC, thiết kế đồ họa giới thiệu sản phẩm và quản trị fanpage chuyên nghiệp.',
     image: '/assets/generated/core_service_media.png',
     features: [
       'PR Báo chí & Định vị thương hiệu toàn diện',
