@@ -38,7 +38,7 @@ export const CORE_SERVICES: ServiceItem[] = [
     image: '/assets/generated/core_service_connection.png',
     features: [
       'Kêu gọi tài trợ & Bảo trợ truyền thông sự kiện',
-      'Kết nối đối tác trong hệ sinh thái TAVITAX',
+      'Kết nối đối tác trong hệ sinh thái đối tác rộng lớn',
       'Xúc tiến thương mại Doanh nghiệp SME & Ngân hàng',
       'Booking KOL/KOC & Hỗ trợ thiết lập liên minh'
     ]
