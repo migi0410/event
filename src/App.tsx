@@ -38,14 +38,6 @@ export default function App() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   
 
-  // Form Fields State
-  const [fullName, setFullName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [company, setCompany] = useState('');
-  const [request, setRequest] = useState('');
-  const [formError, setFormError] = useState('');
-  const [formSuccess, setFormSuccess] = useState(false);
-
   // Intersection observer to track active navbar links on scroll
   useEffect(() => {
     const sections = ['trai-nghiem', 'chien-luoc', 'studio', 'di-san'];
@@ -69,77 +61,6 @@ export default function App() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // Set default local leads if not present
-  useEffect(() => {
-    const existing = localStorage.getItem('tat_consultation_inquiries');
-    if (!existing) {
-      localStorage.setItem('tat_consultation_inquiries', JSON.stringify(INITIAL_INQUIRIES));
-    }
-  }, []);
-
-  // Handle lead submission
-  const handleSubmitBooking = (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormError('');
-
-    // Validations
-    if (!fullName.trim()) {
-      setFormError('Vui lòng nhập họ và tên của bạn.');
-      return;
-    }
-    if (!phone.trim()) {
-      setFormError('Vui lòng nhập số điện thoại hoặc Zalo liên hệ.');
-      return;
-    }
-    const phoneRegex = /^[0-9\s\-\+\(\)]{9,15}$/;
-    if (!phoneRegex.test(phone)) {
-      setFormError('Số điện thoại không hợp lệ. Vui lòng nhập từ 9 đến 15 chữ số.');
-      return;
-    }
-    if (!company.trim()) {
-      setFormError('Vui lòng cung cấp tên doanh nghiệp / công ty.');
-      return;
-    }
-    if (!request.trim()) {
-      setFormError('Vui lòng ghi rõ yêu cầu hoặc ý tưởng sự kiện để TAT tư vấn tốt nhất.');
-      return;
-    }
-
-    const newInquiry: ConsultationInquiry = {
-      id: `inq-${Date.now()}`,
-      fullName: fullName.trim(),
-      phone: phone.trim(),
-      company: company.trim(),
-      request: request.trim(),
-      createdAt: new Date().toISOString(),
-      status: 'new'
-    };
-
-    // Save to local storage
-    const stored = localStorage.getItem('tat_consultation_inquiries');
-    let inquiriesList: ConsultationInquiry[] = [];
-    if (stored) {
-      try {
-        inquiriesList = JSON.parse(stored);
-      } catch (err) {
-        inquiriesList = INITIAL_INQUIRIES;
-      }
-    }
-    inquiriesList.unshift(newInquiry);
-    localStorage.setItem('tat_consultation_inquiries', JSON.stringify(inquiriesList));
-
-    // Reset fields & trigger success toast
-    setFullName('');
-    setPhone('');
-    setCompany('');
-    setRequest('');
-    setFormSuccess(true);
-    
-    setTimeout(() => {
-      setFormSuccess(false);
-    }, 6000);
-  };
 
 
   const filteredProjects = projectFilter === 'all' 
@@ -493,166 +414,144 @@ export default function App() {
       </section>
 
 
-      {/* Booking Form + Location Map Section */}
-      <section id="tu-van" className="relative py-24 md:py-32 bg-primary">
-        <div className="px-6 md:px-20 max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-12 gap-16 lg:gap-24 items-start">
+      {/* Redesigned Contact & Zalo Section (Minimalist & Premium) */}
+      <section id="tu-van" className="relative py-28 md:py-36 bg-[#081223] border-t border-white/5 overflow-hidden">
+        {/* Ambient background glow */}
+        <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="px-6 md:px-20 max-w-7xl mx-auto relative z-10">
+          <div className="grid lg:grid-cols-12 gap-16 items-stretch">
             
-            {/* Left Info Panel */}
-            <div className="lg:col-span-5 space-y-12">
+            {/* Left Side: Typography & Core Contact Info */}
+            <div className="lg:col-span-5 flex flex-col justify-between space-y-12">
               <div className="space-y-6">
-                <span className="font-display font-bold text-xs text-secondary tracking-[0.4em] uppercase block">
-                  — KHỞI ĐẦU HÀNH TRÌNH
+                <span className="font-display font-bold text-xs text-secondary tracking-[0.3em] uppercase block">
+                  — LIÊN HỆ & HỢP TÁC
                 </span>
-                <h2 className="font-display font-extrabold text-3xl md:text-5xl text-white leading-tight tracking-tight">
-                  Bắt đầu hành trình chuyển đổi của bạn.
+                <h2 className="font-display font-extrabold text-3xl md:text-5xl text-white tracking-tight leading-tight">
+                  Khởi đầu hành trình cùng TAT Media & Event.
                 </h2>
-                <div className="asymmetric-rule w-32" />
-                <p className="text-sm md:text-base text-white/60 font-sans leading-relaxed">
-                  Hãy điền đầy đủ thông tin bên cạnh để đội ngũ chuyên gia cao cấp của TAT Media & Event liên hệ phân tích nhu cầu và lập kế hoạch chiến lược hoàn toàn miễn phí trong vòng 24h.
-                </p>
               </div>
 
-              {/* Utility Info list */}
-              <div className="space-y-6">
-                <div className="flex items-center gap-5">
-                  <div className="p-3 bg-[#0a162b] border border-white/10 text-secondary">
-                    <MapPin className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h5 className="font-display font-bold text-xs tracking-wider text-white uppercase">Văn phòng chính</h5>
-                    <p className="text-sm text-white/60 font-sans mt-1">14 đường D33, phường Phước Long, TP.HCM</p>
-                  </div>
+              {/* Minimal Contact List (Stacked Premium Typography) */}
+              <div className="space-y-8 border-t border-white/10 pt-8">
+                {/* Office */}
+                <div className="space-y-1.5">
+                  <span className="font-display font-bold text-[10px] tracking-[0.25em] text-white/40 uppercase block">Văn phòng chính</span>
+                  <p className="text-sm md:text-base text-white/80 font-sans leading-relaxed">
+                    14 đường D33, phường Phước Long, TP.HCM
+                  </p>
+                </div>
+                
+                {/* Hotline */}
+                <div className="space-y-1.5">
+                  <span className="font-display font-bold text-[10px] tracking-[0.25em] text-white/40 uppercase block">Hotline / Zalo</span>
+                  <a href="tel:0335700373" className="text-sm md:text-base text-secondary hover:text-secondary-light font-sans font-bold transition-all duration-300 inline-block">
+                    0335700373
+                  </a>
                 </div>
 
-                <div className="flex items-center gap-5">
-                  <div className="p-3 bg-[#0a162b] border border-white/10 text-secondary">
-                    <Mail className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h5 className="font-display font-bold text-xs tracking-wider text-white uppercase">Email</h5>
-                    <p className="text-sm text-white/60 font-sans mt-1">contact@tatmedia.vn</p>
-                  </div>
+                {/* Email */}
+                <div className="space-y-1.5">
+                  <span className="font-display font-bold text-[10px] tracking-[0.25em] text-white/40 uppercase block">Email liên hệ</span>
+                  <a href="mailto:huynhthitham.081003@gmail.com" className="text-sm md:text-base text-white/80 hover:text-secondary transition-all duration-300 inline-block break-all font-sans">
+                    huynhthitham.081003@gmail.com
+                  </a>
                 </div>
               </div>
 
-              {/* Embedded interactive Google Map */}
-              <div className="relative h-[240px] w-full border border-white/10 overflow-hidden">
+              {/* Interactive Google Map Embed */}
+              <div className="relative w-full rounded-2xl border border-white/10 overflow-hidden shadow-2xl group mt-2" style={{ height: '200px' }}>
                 <iframe 
-                  className="w-full h-full border-0 filter invert-[0.9] hue-rotate-[200deg] brightness-[0.8] contrast-[1.2]"
+                  className="w-full h-full border-0"
                   src="https://maps.google.com/maps?q=14%20%C4%91%C6%B0%E1%BB%9Dng%20D33%2C%20ph%C6%B0%E1%BB%9Bc%20long%2C%20TP.HCM&t=&z=16&ie=UTF8&iwloc=&output=embed"
                   allowFullScreen={true}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="TAT Media & Event Location Map"
+                  title="TAT Media & Event Map"
                 />
-                <div className="absolute bottom-4 right-4 bg-[#0a162b] border border-white/10 px-3 py-1 text-[9px] font-display font-bold tracking-widest text-white/80 uppercase pointer-events-none">
-                  TAT MEDIA & EVENT HQ
-                </div>
               </div>
             </div>
 
-            {/* Right Contact Form panel */}
-            <div className="lg:col-span-7 bg-[#0a162b] p-6 md:p-12 border border-white/10 relative">
-              <h3 className="font-display font-extrabold text-xl md:text-2xl text-white tracking-wide mb-8">
-                Đăng ký Tư vấn Giải pháp
-              </h3>
+            {/* Right Side: Zalo Connect Panel (Harmonious Single Bezel Card) */}
+            <div className="lg:col-span-7 bg-[#0a162b] border border-white/10 rounded-2xl p-6 md:p-10 space-y-8 h-full flex flex-col justify-between shadow-2xl relative overflow-hidden">
+              {/* Subtle internal glow */}
+              <div className="absolute top-0 right-0 w-32 h-32 rounded-full blur-2xl pointer-events-none" style={{ backgroundColor: 'rgba(0, 104, 255, 0.1)' }} />
 
-              {formSuccess ? (
-                <div className="space-y-6 text-center py-10">
-                  <div className="inline-flex items-center justify-center p-4 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 rounded-full animate-bounce">
-                    <CheckCircle2 className="w-10 h-10" />
-                  </div>
-                  <div className="space-y-2">
-                    <h4 className="font-display font-bold text-lg text-white tracking-wide">
-                      Gửi yêu cầu thành công!
-                    </h4>
-                    <p className="text-sm text-white/60 font-sans leading-relaxed max-w-md mx-auto">
-                      Cảm ơn bạn đã tin tưởng TAT Media. Đội ngũ chuyên gia chiến lược của chúng tôi đã tiếp nhận yêu cầu và sẽ liên hệ ngay qua điện thoại/Zalo trong vòng 24 giờ.
-                    </p>
-                  </div>
-                  <div className="pt-4">
-                    <button 
-                      onClick={() => setFormSuccess(false)}
-                      className="border border-white/20 hover:border-white px-8 py-3 text-xs font-display font-bold tracking-widest uppercase transition-all rounded-none cursor-pointer"
-                    >
-                      Đăng ký thêm yêu cầu khác
-                    </button>
-                  </div>
+              {/* Zalo official header */}
+              <div className="flex items-center justify-between border-b border-white/10 pb-4 relative z-10">
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full animate-pulse" style={{ backgroundColor: '#0068FF' }} />
+                  <span className="font-display font-bold text-xs tracking-[0.2em] uppercase" style={{ color: '#0068FF' }}>
+                    ZALO OFFICIAL
+                  </span>
                 </div>
-              ) : (
-                <form onSubmit={handleSubmitBooking} className="space-y-8">
-                  {formError && (
-                    <div className="p-4 bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs font-sans rounded-none">
-                      ⚠️ {formError}
-                    </div>
-                  )}
+                <span className="text-[10px] font-display font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full uppercase">
+                  ● Trực tuyến 24/7
+                </span>
+              </div>
 
-                  <div className="space-y-2">
-                    <label className="font-display font-bold text-[10px] tracking-widest uppercase text-white/40 block">
-                      Họ và tên
-                    </label>
-                    <input 
-                      className="w-full bg-transparent border-0 border-b border-white/20 focus:border-secondary focus:ring-0 text-white text-sm py-3 transition-colors outline-none font-sans" 
-                      placeholder="Nguyễn Văn A" 
-                      type="text"
-                      value={fullName}
-                      onChange={(e) => setFullName(e.target.value)}
-                    />
-                  </div>
+              <div className="space-y-3 relative z-10">
+                <h3 className="font-display font-extrabold text-2xl md:text-3xl text-white tracking-tight leading-tight">
+                  Trò chuyện trực tuyến
+                </h3>
+                <p className="text-xs md:text-sm text-white/50 leading-relaxed font-sans">
+                  Quét mã QR bằng ứng dụng Zalo trên điện thoại hoặc bấm nút bên dưới để bắt đầu trò chuyện trực tiếp cùng chuyên gia chiến lược TAT Media.
+                </p>
+              </div>
 
-                  <div className="space-y-2">
-                    <label className="font-display font-bold text-[10px] tracking-widest uppercase text-white/40 block">
-                      Số điện thoại / Zalo
-                    </label>
-                    <input 
-                      className="w-full bg-transparent border-0 border-b border-white/20 focus:border-secondary focus:ring-0 text-white text-sm py-3 transition-colors outline-none font-sans" 
-                      placeholder="090 000 0000" 
-                      type="tel"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                    />
-                  </div>
+              {/* QR Code Center Showcase */}
+              <div className="flex flex-col items-center justify-center space-y-4 py-4 relative z-10">
+                <div className="bg-white p-4 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.4)] border border-white/10 hover:scale-[1.03] transition-transform duration-500 flex items-center justify-center shrink-0" style={{ width: '168px', height: '168px' }}>
+                  <img 
+                    src="/assets/zalo-qr.png" 
+                    alt="Zalo QR Code" 
+                    className="object-contain rounded-xl"
+                    style={{ width: '136px', height: '136px' }}
+                  />
+                </div>
+                <span className="text-[9px] font-display font-bold tracking-[0.25em] text-white/40 uppercase">
+                  QUÉT MÃ ZALO QR
+                </span>
+              </div>
 
-                  <div className="space-y-2">
-                    <label className="font-display font-bold text-[10px] tracking-widest uppercase text-white/40 block">
-                      Doanh nghiệp
-                    </label>
-                    <input 
-                      className="w-full bg-transparent border-0 border-b border-white/20 focus:border-secondary focus:ring-0 text-white text-sm py-3 transition-colors outline-none font-sans" 
-                      placeholder="Tên công ty của bạn" 
-                      type="text"
-                      value={company}
-                      onChange={(e) => setCompany(e.target.value)}
-                    />
-                  </div>
+              {/* Horizontal Features Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-b border-white/10 py-6 relative z-10">
+                <div className="flex items-center gap-2 justify-center">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" strokeWidth={2.5} />
+                  <span className="text-xs text-white/70 font-sans">Phản hồi 5 - 15 phút</span>
+                </div>
+                <div className="flex items-center gap-2 justify-center">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" strokeWidth={2.5} />
+                  <span className="text-xs text-white/70 font-sans">Tư vấn miễn phí</span>
+                </div>
+                <div className="flex items-center gap-2 justify-center">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" strokeWidth={2.5} />
+                  <span className="text-xs text-white/70 font-sans">Bảo mật chiến dịch</span>
+                </div>
+              </div>
 
-                  <div className="space-y-2">
-                    <label className="font-display font-bold text-[10px] tracking-widest uppercase text-white/40 block">
-                      Yêu cầu tư vấn
-                    </label>
-                    <textarea 
-                      className="w-full bg-transparent border-0 border-b border-white/20 focus:border-secondary focus:ring-0 text-white text-sm py-3 transition-colors outline-none resize-none font-sans" 
-                      placeholder="Chia sẻ sơ lược về dự định sự kiện hoặc chiến dịch truyền thông của bạn..." 
-                      rows={4}
-                      value={request}
-                      onChange={(e) => setRequest(e.target.value)}
-                    />
-                  </div>
+              {/* Direct Action Link */}
+              <div className="relative z-10 w-full">
+                <a 
+                  href="https://zalo.me/0335700373"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/zalo w-full text-white py-4 px-8 rounded-full font-sans font-bold text-xs tracking-[0.15em] uppercase transition-premium flex items-center justify-center gap-3 active:scale-[0.98] border-0 cursor-pointer"
+                  style={{ background: 'linear-gradient(135deg, #0068FF 0%, #0052cc 100%)', boxShadow: '0 10px 25px rgba(0, 104, 255, 0.2)' }}
+                >
+                  <span className="whitespace-nowrap">Bắt đầu cuộc trò chuyện</span>
+                  <span className="w-6 h-6 rounded-full bg-white/10 group-hover/zalo:bg-white/20 flex items-center justify-center transition-colors">
+                    <ExternalLink className="w-3.5 h-3.5 text-white" strokeWidth={2.5} />
+                  </span>
+                </a>
+              </div>
 
-                  <button 
-                    type="submit"
-                    className="group w-full bg-secondary hover:bg-secondary-light text-white pl-8 pr-3 py-3 rounded-full font-sans font-bold text-xs tracking-[0.15em] uppercase transition-premium flex items-center justify-center gap-4 cursor-pointer active:scale-95 shadow-xl border-0"
-                  >
-                    <span>Gửi yêu cầu tư vấn</span>
-                    <span className="w-8 h-8 rounded-full bg-white/10 group-hover:bg-white/20 flex items-center justify-center transition-colors">
-                      <svg className="w-3 h-3 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                    </span>
-                  </button>
-                </form>
-              )}
+              {/* Bottom Status bar */}
+              <div className="pt-4 border-t border-white/5 flex flex-wrap items-center justify-between gap-4 text-[10px] text-white/40 font-sans relative z-10">
+                <span>Hotline hỗ trợ: <strong className="text-white font-medium">0335700373</strong></span>
+                <span>Email: <strong className="text-white font-medium">huynhthitham.081003@gmail.com</strong></span>
+              </div>
             </div>
 
           </div>

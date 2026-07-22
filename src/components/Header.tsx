@@ -21,7 +21,8 @@ export default function Header({ onOpenConsultation, activeSection }: HeaderProp
     { id: 'trai-nghiem', label: 'Giới thiệu' },
     { id: 'chien-luoc', label: 'Khác biệt' },
     { id: 'studio', label: 'Dịch vụ' },
-    { id: 'di-san', label: 'Dự án' }
+    { id: 'di-san', label: 'Dự án' },
+    { id: 'tu-van', label: 'Liên hệ' }
   ];
 
   const scrollToSection = (id: string) => {
